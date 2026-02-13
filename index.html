@@ -47,6 +47,16 @@
       padding: 28px 14px;
     }
 
+    body.locked .page {
+      filter: blur(3px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
     /* Soft ambient glow behind content */
     body::before,
     body::after {
@@ -330,12 +340,154 @@
       transform: translateX(-50%) translateY(-100px);
     }
 
+    .polaroid-section {
+      width: min(760px, 96vw);
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .polaroid-title {
+      margin: 0;
+      font-family: "Georgia", "Times New Roman", serif;
+      color: #7a2448;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      text-shadow: 0 6px 14px rgba(171, 52, 98, 0.18);
+    }
+
+    .polaroid-wall {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .polaroid-card {
+      background: #fffafc;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 12px 24px rgba(137, 42, 76, 0.2);
+      padding: 8px 8px 12px;
+      transform: rotate(var(--tilt, 0deg));
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .polaroid-card:hover {
+      transform: rotate(0deg) translateY(-5px) scale(1.02);
+      box-shadow: 0 16px 28px rgba(137, 42, 76, 0.28);
+    }
+
+    .polaroid-image {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      border: 1px solid rgba(255, 214, 232, 0.8);
+      background: #f4d9e5;
+    }
+
+    .polaroid-caption {
+      margin: 9px 2px 0;
+      text-align: center;
+      color: #7f5164;
+      font-size: 0.86rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
     .floating-hearts {
       position: fixed;
       inset: 0;
       overflow: hidden;
       pointer-events: none;
       z-index: 1;
+    }
+
+    .lock-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(255, 224, 236, 0.42);
+      backdrop-filter: blur(8px);
+    }
+
+    body.locked .lock-overlay {
+      display: flex;
+    }
+
+    .lock-card {
+      width: min(560px, 95vw);
+      border-radius: 22px;
+      padding: 22px 18px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      box-shadow: 0 18px 38px rgba(131, 47, 83, 0.25);
+    }
+
+    .lock-title {
+      margin: 0 0 8px;
+      font-size: clamp(1.55rem, 4.2vw, 2.2rem);
+      color: #7a2448;
+      font-family: "Georgia", "Times New Roman", serif;
+      text-shadow: 0 6px 18px rgba(179, 68, 109, 0.2);
+    }
+
+    .lock-subtitle {
+      margin: 0 0 6px;
+      color: var(--text-soft);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+    }
+
+    .lock-message {
+      margin: 0 auto 14px;
+      max-width: 46ch;
+      line-height: 1.5;
+      color: #6d3b50;
+      font-size: 0.98rem;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .countdown-item {
+      border-radius: 14px;
+      padding: 9px 6px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 8px 15px rgba(139, 52, 84, 0.15);
+    }
+
+    .countdown-value {
+      display: block;
+      font-size: clamp(1.2rem, 3.2vw, 1.5rem);
+      font-weight: 800;
+      color: #7a2448;
+      font-family: "Georgia", "Times New Roman", serif;
+      line-height: 1.1;
+    }
+
+    .countdown-label {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.75rem;
+      color: #8b5c70;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+      font-weight: 700;
     }
 
     .floating-heart {
@@ -541,8 +693,16 @@
         align-items: stretch;
       }
 
+      .countdown {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .memory-counter {
         grid-template-columns: 1fr;
+      }
+
+      .polaroid-wall {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .reason-card {
@@ -561,6 +721,33 @@
 </head>
 <body>
   <div class="floating-hearts" id="floatingHearts" aria-hidden="true"></div>
+  <div class="lock-overlay" id="lockOverlay">
+    <section class="lock-card" aria-live="polite">
+      <h2 class="lock-title">Open On Valentine’s Day ❤️</h2>
+      <p class="lock-subtitle" id="unlockDateLabel">Unlocks on February 14</p>
+      <p class="lock-message">
+        I made this just for you-hope it brings a smile to your face.
+      </p>
+      <div class="countdown" id="countdownWrap">
+        <div class="countdown-item">
+          <span class="countdown-value" id="cdDays">0</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="cdHours">0</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="cdMinutes">0</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="cdSeconds">0</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <main class="page">
     <h1>Reasons Why I Love You, Recel Busilak B. Perez ❤️</h1>
@@ -595,6 +782,8 @@
         <div class="envelope">
           <div class="envelope-back"></div>
           <div class="envelope-letter" id="secretMessage">
+            I’m sorry if I can’t afford much for our date or give you something fancy, but my gift to you this Valentine’s is all of me — my love, my time, and my heart.
+            <br /><br />
             Loving you is the easiest and most beautiful part of my life. Thank you for being my home, my peace, and my forever favorite person.
           </div>
           <div class="envelope-flap"></div>
@@ -602,6 +791,11 @@
         </div>
       </button>
       <p class="envelope-hint">Tap the envelope for a secret message</p>
+    </section>
+
+    <section class="polaroid-section" aria-label="Our photo memories">
+      <h2 class="polaroid-title">Our Photo Polaroid Wall 📸</h2>
+      <div class="polaroid-wall" id="polaroidWall"></div>
     </section>
 
     <section class="reasons" id="reasonsContainer" aria-live="polite"></section>
@@ -641,9 +835,33 @@
     const floatingHearts = document.getElementById("floatingHearts");
     const envelopeSurprise = document.getElementById("envelopeSurprise");
     const envelopeTrigger = document.getElementById("envelopeTrigger");
+    const polaroidWall = document.getElementById("polaroidWall");
+    const lockOverlay = document.getElementById("lockOverlay");
+    const unlockDateLabel = document.getElementById("unlockDateLabel");
+    const cdDays = document.getElementById("cdDays");
+    const cdHours = document.getElementById("cdHours");
+    const cdMinutes = document.getElementById("cdMinutes");
+    const cdSeconds = document.getElementById("cdSeconds");
 
     let currentReasonIndex = 0;
     let finaleTriggered = false;
+
+    // Set your lock date here (local time): only unlock from this moment onward.
+    const unlockDate = new Date("2026-02-14T00:00:00");
+    let lockTimer = null;
+
+    // Editable photo wall data (image paths are relative to index.html).
+    const polaroidMemories = [
+      { src: "imgs/1.jpg", caption: "One of my favorite moments with you." },
+      { src: "imgs/2.jpg", caption: "Every picture with you feels special." },
+      { src: "imgs/3.jpg", caption: "My happy place is always with you." },
+      { src: "imgs/4.jpg", caption: "A memory I will keep forever." },
+      { src: "imgs/5.jpg", caption: "You make ordinary days beautiful." },
+      { src: "imgs/6.jpg", caption: "Us, and that is everything to me." },
+      { src: "imgs/7.jpg", caption: "Still one of the sweetest days." },
+      { src: "imgs/8.jpg", caption: "You make my heart feel at home." },
+      { src: "imgs/9.jpg", caption: "Forever grateful for moments like this." }
+    ];
 
     // Memory timeline dates.
     const knownSinceDate = new Date("2025-04-01T00:00:00");
@@ -663,6 +881,82 @@
 
     updateMemoryCounters();
     setInterval(updateMemoryCounters, 1000);
+
+    function formatTwoDigits(value) {
+      return String(value).padStart(2, "0");
+    }
+
+    function applyUnlockedState() {
+      document.body.classList.remove("locked");
+      lockOverlay.setAttribute("aria-hidden", "true");
+      if (lockTimer) {
+        clearInterval(lockTimer);
+        lockTimer = null;
+      }
+    }
+
+    function renderCountdown() {
+      const now = new Date();
+      const remainingMs = unlockDate.getTime() - now.getTime();
+
+      if (remainingMs <= 0) {
+        applyUnlockedState();
+        return;
+      }
+
+      const totalSeconds = Math.floor(remainingMs / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      cdDays.textContent = formatTwoDigits(days);
+      cdHours.textContent = formatTwoDigits(hours);
+      cdMinutes.textContent = formatTwoDigits(minutes);
+      cdSeconds.textContent = formatTwoDigits(seconds);
+    }
+
+    function initializeLock() {
+      unlockDateLabel.textContent = `Unlocks on ${unlockDate.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}`;
+
+      if (new Date().getTime() >= unlockDate.getTime()) {
+        applyUnlockedState();
+        return;
+      }
+
+      document.body.classList.add("locked");
+      lockOverlay.setAttribute("aria-hidden", "false");
+      renderCountdown();
+      lockTimer = setInterval(renderCountdown, 1000);
+    }
+
+    initializeLock();
+
+    function renderPolaroidWall() {
+      const tilts = [-4, 3, -2, 2, -3, 4, -2, 3, -4];
+
+      polaroidMemories.forEach((memory, index) => {
+        const card = document.createElement("article");
+        card.className = "polaroid-card";
+        card.style.setProperty("--tilt", `${tilts[index % tilts.length]}deg`);
+
+        const image = document.createElement("img");
+        image.className = "polaroid-image";
+        image.src = memory.src;
+        image.alt = memory.caption;
+        image.loading = "lazy";
+
+        const caption = document.createElement("p");
+        caption.className = "polaroid-caption";
+        caption.textContent = memory.caption;
+
+        card.appendChild(image);
+        card.appendChild(caption);
+        polaroidWall.appendChild(card);
+      });
+    }
+
+    renderPolaroidWall();
 
     bgMusic.volume = Number(musicVolume.value) / 100;
 

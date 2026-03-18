@@ -1,1115 +1,819 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reasons Why I Love You, Recel Busilak B. Perez</title>
-  <style>
-    :root {
-      --bg-1: #ffd9e8;
-      --bg-2: #ffc5db;
-      --bg-3: #ffe9f1;
-      --bg-4: #f9c5d5;
-      --rose: #ff4f86;
-      --rose-dark: #d73767;
-      --text-main: #4d2b39;
-      --text-soft: #7f5164;
-      --glass: rgba(255, 255, 255, 0.35);
-      --glass-border: rgba(255, 255, 255, 0.45);
-      --shadow: 0 12px 30px rgba(137, 42, 76, 0.18);
-    }
-
-    * {
-      box-sizing: border-box;
-      cursor: none;
-    }
-
-    html,
-    body {
-      width: 100%;
-      min-height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
-      color: var(--text-main);
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow-x: hidden;
-      background: linear-gradient(-45deg, var(--bg-1), var(--bg-2), var(--bg-3), var(--bg-4));
-      background-size: 400% 400%;
-      animation: dreamyGradient 24s ease infinite;
-      position: relative;
-      padding: 28px 14px;
-    }
-
-    body.locked .page {
-      filter: blur(3px);
-      pointer-events: none;
-      user-select: none;
-    }
-
-    body.locked {
-      overflow: hidden;
-    }
-
-    /* Soft ambient glow behind content */
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      width: 38vmax;
-      height: 38vmax;
-      border-radius: 50%;
-      filter: blur(50px);
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::before {
-      background: #ff8db4;
-      top: -10vmax;
-      left: -8vmax;
-      animation: floatBlob 18s ease-in-out infinite;
-    }
-
-    body::after {
-      background: #ffd6e7;
-      bottom: -10vmax;
-      right: -8vmax;
-      animation: floatBlob 22s ease-in-out infinite reverse;
-    }
-
-    .page {
-      width: min(780px, 95vw);
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    h1 {
-      margin: 0;
-      line-height: 1.15;
-      letter-spacing: 0.3px;
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      font-family: "Georgia", "Times New Roman", serif;
-      color: #7a2448;
-      text-shadow: 0 8px 24px rgba(171, 52, 98, 0.26);
-    }
-
-    .love-button {
-      border: 0;
-      outline: none;
-      margin-top: 6px;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: clamp(1rem, 2.2vw, 1.15rem);
-      letter-spacing: 0.2px;
-      padding: 16px 34px;
-      border-radius: 999px;
-      background: linear-gradient(120deg, var(--rose), #ff7fa6);
-      box-shadow: 0 10px 24px rgba(212, 61, 111, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
-      animation: pulse 2.5s ease-in-out infinite;
-    }
-
-    .love-button:hover {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 14px 32px rgba(212, 61, 111, 0.58);
-      filter: brightness(1.06);
-    }
-
-    .love-button:active {
-      transform: translateY(0) scale(0.98);
-    }
-
-    .love-button:disabled {
-      background: linear-gradient(120deg, #d5a8b8, #c997ab);
-      box-shadow: 0 8px 18px rgba(120, 63, 85, 0.22);
-      animation: none;
-    }
-
-    .music-panel {
-      width: min(700px, 95vw);
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow);
-      border-radius: 18px;
-      backdrop-filter: blur(8px);
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .music-toggle {
-      border: 0;
-      border-radius: 999px;
-      padding: 10px 16px;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 0.92rem;
-      letter-spacing: 0.2px;
-      background: linear-gradient(120deg, var(--rose), #ff7fa6);
-      box-shadow: 0 8px 18px rgba(212, 61, 111, 0.33);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .music-toggle:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 11px 22px rgba(212, 61, 111, 0.45);
-    }
-
-    .music-volume-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 190px;
-      color: var(--text-soft);
-      font-size: 0.86rem;
-      font-weight: 700;
-    }
-
-    .music-volume {
-      width: 100%;
-      accent-color: #ff5a91;
-    }
-
-    .memory-counter {
-      width: min(700px, 95vw);
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 4px;
-    }
-
-    .memory-card {
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow);
-      border-radius: 18px;
-      backdrop-filter: blur(8px);
-      padding: 12px 14px;
-      text-align: left;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .memory-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 28px rgba(137, 42, 76, 0.22);
-    }
-
-    .memory-title {
-      margin: 0 0 5px;
-      font-size: 0.9rem;
-      color: var(--text-soft);
-      letter-spacing: 0.2px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .memory-days {
-      margin: 0;
-      font-size: clamp(1.15rem, 2.8vw, 1.55rem);
-      font-weight: 800;
-      color: #7a2448;
-      font-family: "Georgia", "Times New Roman", serif;
-    }
-
-    .memory-date {
-      margin: 2px 0 0;
-      font-size: 0.86rem;
-      color: var(--text-soft);
-    }
-
-    .envelope-surprise {
-      width: min(700px, 95vw);
-      margin-top: 2px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .envelope-trigger {
-      border: 0;
-      background: transparent;
-      padding: 0;
-      cursor: none;
-    }
-
-    .envelope {
-      position: relative;
-      width: min(280px, 70vw);
-      height: 180px;
-      perspective: 1000px;
-      filter: drop-shadow(0 14px 20px rgba(120, 40, 72, 0.26));
-      transition: transform 0.35s ease;
-    }
-
-    .envelope-trigger:hover .envelope {
-      transform: translateY(-4px);
-    }
-
-    .envelope-back {
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      background: linear-gradient(145deg, #ffc0d8, #ffabc9);
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      overflow: hidden;
-    }
-
-    .envelope-front {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 56%;
-      background: linear-gradient(160deg, #ff9fc2, #ff8eb6);
-      clip-path: polygon(0 0, 50% 44%, 100% 0, 100% 100%, 0 100%);
-      border-bottom-left-radius: 16px;
-      border-bottom-right-radius: 16px;
-      z-index: 3;
-    }
-
-    .envelope-flap {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 58%;
-      transform-origin: top;
-      transform: rotateX(0deg);
-      transition: transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
-      background: linear-gradient(160deg, #ff85b0, #ff6e9f);
-      clip-path: polygon(0 0, 50% 70%, 100% 0, 100% 100%, 0 100%);
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      z-index: 4;
-      backface-visibility: hidden;
-    }
-
-    .envelope-letter {
-      position: absolute;
-      left: 50%;
-      bottom: 10px;
-      transform: translateX(-50%) translateY(0);
-      width: 84%;
-      min-height: 58%;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      border-radius: 12px;
-      padding: 12px 12px 10px;
-      color: #7a2448;
-      font-size: 0.92rem;
-      line-height: 1.42;
-      text-align: center;
-      z-index: 2;
-      opacity: 0;
-      box-shadow: 0 8px 16px rgba(118, 36, 70, 0.12);
-      transition: transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.3s ease;
-    }
-
-    .envelope-hint {
-      margin: 0;
-      font-size: 0.92rem;
-      color: var(--text-soft);
-      font-weight: 700;
-      letter-spacing: 0.2px;
-    }
-
-    .envelope-surprise.open .envelope-flap {
-      transform: rotateX(170deg);
-    }
-
-    .envelope-surprise.open .envelope-letter {
-      opacity: 1;
-      z-index: 6;
-      transform: translateX(-50%) translateY(-100px);
-    }
-
-    .polaroid-section {
-      width: min(760px, 96vw);
-      margin-top: 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .polaroid-title {
-      margin: 0;
-      font-family: "Georgia", "Times New Roman", serif;
-      color: #7a2448;
-      font-size: clamp(1.2rem, 3vw, 1.6rem);
-      text-shadow: 0 6px 14px rgba(171, 52, 98, 0.18);
-    }
-
-    .polaroid-wall {
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .polaroid-card {
-      background: #fffafc;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.75);
-      box-shadow: 0 12px 24px rgba(137, 42, 76, 0.2);
-      padding: 8px 8px 12px;
-      transform: rotate(var(--tilt, 0deg));
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .polaroid-card:hover {
-      transform: rotate(0deg) translateY(-5px) scale(1.02);
-      box-shadow: 0 16px 28px rgba(137, 42, 76, 0.28);
-    }
-
-    .polaroid-image {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      border-radius: 4px;
-      display: block;
-      border: 1px solid rgba(255, 214, 232, 0.8);
-      background: #f4d9e5;
-    }
-
-    .polaroid-caption {
-      margin: 9px 2px 0;
-      text-align: center;
-      color: #7f5164;
-      font-size: 0.86rem;
-      font-weight: 700;
-      line-height: 1.35;
-    }
-
-    .floating-hearts {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .lock-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(255, 224, 236, 0.42);
-      backdrop-filter: blur(8px);
-    }
-
-    body.locked .lock-overlay {
-      display: flex;
-    }
-
-    .lock-card {
-      width: min(560px, 95vw);
-      border-radius: 22px;
-      padding: 22px 18px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.52);
-      border: 1px solid rgba(255, 255, 255, 0.62);
-      box-shadow: 0 18px 38px rgba(131, 47, 83, 0.25);
-    }
-
-    .lock-title {
-      margin: 0 0 8px;
-      font-size: clamp(1.55rem, 4.2vw, 2.2rem);
-      color: #7a2448;
-      font-family: "Georgia", "Times New Roman", serif;
-      text-shadow: 0 6px 18px rgba(179, 68, 109, 0.2);
-    }
-
-    .lock-subtitle {
-      margin: 0 0 6px;
-      color: var(--text-soft);
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.2px;
-      text-transform: uppercase;
-    }
-
-    .lock-message {
-      margin: 0 auto 14px;
-      max-width: 46ch;
-      line-height: 1.5;
-      color: #6d3b50;
-      font-size: 0.98rem;
-    }
-
-    .countdown {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .countdown-item {
-      border-radius: 14px;
-      padding: 9px 6px;
-      background: rgba(255, 255, 255, 0.62);
-      border: 1px solid rgba(255, 255, 255, 0.75);
-      box-shadow: 0 8px 15px rgba(139, 52, 84, 0.15);
-    }
-
-    .countdown-value {
-      display: block;
-      font-size: clamp(1.2rem, 3.2vw, 1.5rem);
-      font-weight: 800;
-      color: #7a2448;
-      font-family: "Georgia", "Times New Roman", serif;
-      line-height: 1.1;
-    }
-
-    .countdown-label {
-      display: block;
-      margin-top: 2px;
-      font-size: 0.75rem;
-      color: #8b5c70;
-      text-transform: uppercase;
-      letter-spacing: 0.45px;
-      font-weight: 700;
-    }
-
-    .floating-heart {
-      position: absolute;
-      bottom: -12vh;
-      left: var(--left, 50%);
-      font-size: var(--size, 16px);
-      color: rgba(255, 95, 146, 0.26);
-      animation: heartFloat var(--duration, 18s) linear infinite;
-      animation-delay: var(--delay, 0s);
-      filter: blur(0.2px);
-      user-select: none;
-    }
-
-    .reasons {
-      width: min(700px, 95vw);
-      margin-top: 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .reason-card {
-      opacity: 0;
-      transform: translateY(18px) scale(0.98);
-      border-radius: 22px;
-      padding: 16px 20px;
-      text-align: left;
-      color: var(--text-main);
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      backdrop-filter: blur(8px);
-      box-shadow: var(--shadow);
-      transition: transform 0.28s ease, box-shadow 0.28s ease;
-    }
-
-    .reason-card.show {
-      animation: cardIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-    }
-
-    .reason-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 34px rgba(137, 42, 76, 0.24);
-    }
-
-    .reason-text {
-      margin: 0;
-      font-size: clamp(1rem, 2.1vw, 1.1rem);
-      color: var(--text-main);
-      line-height: 1.45;
-    }
-
-    .final-message {
-      margin-top: 8px;
-      font-size: clamp(1.7rem, 4.8vw, 3rem);
-      font-family: "Georgia", "Times New Roman", serif;
-      color: #fff7fb;
-      text-shadow:
-        0 0 8px rgba(255, 255, 255, 0.7),
-        0 0 20px rgba(255, 173, 204, 0.85),
-        0 0 34px rgba(255, 115, 165, 0.75);
-      opacity: 0;
-      transform: translateY(12px) scale(0.96);
-      pointer-events: none;
-      transition: opacity 0.85s ease, transform 0.85s ease;
-    }
-
-    .final-message.show {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      animation: glowPulse 1.9s ease-in-out infinite;
-    }
-
-    .confetti-layer {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    .confetti {
-      position: fixed;
-      top: -12vh;
-      left: 50%;
-      width: var(--size, 9px);
-      height: calc(var(--size, 9px) * 1.5);
-      border-radius: 2px;
-      opacity: 0.95;
-      animation: confettiDrop var(--fall, 3.8s) linear forwards;
-      will-change: transform, opacity;
-    }
-
-    .heart-cursor {
-      position: fixed;
-      left: 0;
-      top: 0;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 50;
-      font-size: 16px;
-      color: #ff477e;
-      text-shadow: 0 0 12px rgba(255, 112, 158, 0.65);
-      transition: transform 0.06s linear;
-      user-select: none;
-    }
-
-    .click-heart {
-      position: fixed;
-      left: 0;
-      top: 0;
-      pointer-events: none;
-      z-index: 40;
-      font-size: 14px;
-      color: #ff4f86;
-      text-shadow: 0 0 8px rgba(255, 135, 172, 0.75);
-      animation: heartBurst 0.85s ease-out forwards;
-      will-change: transform, opacity;
-      user-select: none;
-    }
-
-    @keyframes dreamyGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes floatBlob {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(12px, -18px) scale(1.06); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.035); }
-    }
-
-    @keyframes cardIn {
-      0% {
-        opacity: 0;
-        transform: translateY(18px) scale(0.98);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.08); }
-    }
-
-    @keyframes confettiDrop {
-      0% {
-        transform: translate3d(0, -12vh, 0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      100% {
-        transform: translate3d(var(--drift, 0px), 112vh, 0) rotate(760deg);
-        opacity: 1;
-      }
-    }
-
-    @keyframes heartBurst {
-      0% {
-        opacity: 0.98;
-        transform: translate(-50%, -50%) scale(0.7);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(calc(-50% + var(--x, 0px)), calc(-50% + var(--y, -30px))) scale(1.45);
-      }
-    }
-
-    @keyframes heartFloat {
-      0% {
-        transform: translate3d(0, 0, 0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      50% {
-        transform: translate3d(var(--drift, 22px), -56vh, 0) rotate(10deg);
-      }
-      100% {
-        transform: translate3d(calc(var(--drift, 22px) * -1), -120vh, 0) rotate(-10deg);
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .page {
-        gap: 14px;
+  <meta
+    name="description"
+    content="A dreamy interactive love page filled with music, memories, messages, and sweet little surprises for Recel Busilak B. Perez."
+  />
+  <meta name="theme-color" content="#ff8faf" />
+  <meta name="color-scheme" content="light dark" />
+  <meta property="og:title" content="Reasons Why I Love You, Recel Busilak B. Perez" />
+  <meta
+    property="og:description"
+    content="A romantic interactive webpage with music, memories, surprises, and the reasons behind every heartbeat."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="imgs/1.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <link rel="preload" href="imgs/1.jpg" as="image" />
+  <link rel="preload" href="To The Bone.mp3" as="audio" />
+  <link rel="stylesheet" href="styles.css" />
+  <noscript>
+    <style>
+      body.intro-pending .page-shell {
+        opacity: 1 !important;
+        transform: none !important;
       }
 
-      .music-panel {
-        flex-direction: column;
-        align-items: stretch;
+      .intro-screen {
+        display: none !important;
       }
-
-      .countdown {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .memory-counter {
-        grid-template-columns: 1fr;
-      }
-
-      .polaroid-wall {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .reason-card {
-        padding: 14px 16px;
-      }
-
-      .love-button {
-        padding: 14px 24px;
-      }
-
-      .envelope-surprise.open .envelope-letter {
-        transform: translateX(-50%) translateY(-88px);
-      }
+    </style>
+  </noscript>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Reasons Why I Love You, Recel Busilak B. Perez",
+      "description": "A romantic interactive webpage with music, memories, surprises, and messages.",
+      "image": "imgs/1.jpg",
+      "inLanguage": "en",
+      "genre": "Romantic interactive webpage"
     }
-  </style>
+  </script>
 </head>
-<body>
+<body class="no-js intro-pending">
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+
+  <div class="decorative-blobs" aria-hidden="true">
+    <span class="blob blob-one"></span>
+    <span class="blob blob-two"></span>
+    <span class="blob blob-three"></span>
+  </div>
   <div class="floating-hearts" id="floatingHearts" aria-hidden="true"></div>
-  <div class="lock-overlay" id="lockOverlay">
-    <section class="lock-card" aria-live="polite">
-      <h2 class="lock-title">Open On Valentine’s Day ❤️</h2>
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <div class="intro-screen" id="introScreen" aria-hidden="false">
+    <div class="intro-card">
+      <p class="intro-kicker">Made with love</p>
+      <h2 class="intro-title">Just for you</h2>
+      <p class="intro-copy">
+        A few little memories, gentle notes, and soft reasons are waiting inside.
+      </p>
+      <button class="secondary-button burst-on-click intro-button" id="introSkip" type="button">
+        Enter
+      </button>
+    </div>
+  </div>
+
+  <div class="lock-overlay" id="lockOverlay" hidden>
+    <section class="lock-card" aria-live="polite" aria-labelledby="lockTitle">
       <p class="lock-subtitle" id="unlockDateLabel">Unlocks on February 14</p>
+      <h2 class="lock-title" id="lockTitle">Open On Valentine’s Day</h2>
       <p class="lock-message">
-        I made this just for you-hope it brings a smile to your face.
+        I made this just for you and wanted it to wait for the right moment.
       </p>
       <div class="countdown" id="countdownWrap">
         <div class="countdown-item">
-          <span class="countdown-value" id="cdDays">0</span>
+          <span class="countdown-value" id="cdDays">00</span>
           <span class="countdown-label">Days</span>
         </div>
         <div class="countdown-item">
-          <span class="countdown-value" id="cdHours">0</span>
+          <span class="countdown-value" id="cdHours">00</span>
           <span class="countdown-label">Hours</span>
         </div>
         <div class="countdown-item">
-          <span class="countdown-value" id="cdMinutes">0</span>
+          <span class="countdown-value" id="cdMinutes">00</span>
           <span class="countdown-label">Minutes</span>
         </div>
         <div class="countdown-item">
-          <span class="countdown-value" id="cdSeconds">0</span>
+          <span class="countdown-value" id="cdSeconds">00</span>
           <span class="countdown-label">Seconds</span>
         </div>
       </div>
     </section>
   </div>
 
-  <main class="page">
-    <h1>Reasons Why I Love You, Recel Busilak B. Perez ❤️</h1>
-
-    <button class="love-button" id="loveButton" type="button">
-      Click to See Why I Love You
-    </button>
-
-    <section class="music-panel" aria-label="Music controls">
-      <button class="music-toggle" id="musicToggle" type="button">Play Our Song ♪</button>
-      <label class="music-volume-wrap" for="musicVolume">
-        Volume
-        <input class="music-volume" id="musicVolume" type="range" min="0" max="100" value="55" />
-      </label>
+  <div class="lock-overlay" id="passwordOverlay" hidden>
+    <section class="lock-card" aria-labelledby="passwordGateTitle">
+      <p class="lock-subtitle">Private Access</p>
+      <h2 class="lock-title" id="passwordGateTitle">A little secret door</h2>
+      <p class="lock-message" id="passwordHintText">
+        Enter our anniversary in MMDDYY format.
+      </p>
+      <form class="password-form" id="passwordForm">
+        <label class="sr-only" for="passwordInput">Password</label>
+        <input
+          class="text-input"
+          id="passwordInput"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="MMDDYY"
+          required
+        />
+        <button class="primary-button burst-on-click" type="submit">Unlock</button>
+      </form>
+      <p class="inline-note" id="passwordFeedback" role="status"></p>
     </section>
+  </div>
 
-    <section class="memory-counter" aria-label="Relationship counters">
-      <article class="memory-card">
-        <p class="memory-title">We've Known Each Other For</p>
-        <p class="memory-days" id="knownDays">0 days</p>
-        <p class="memory-date">Since April 1, 2025</p>
-      </article>
-      <article class="memory-card">
-        <p class="memory-title">We've Been Together For</p>
-        <p class="memory-days" id="togetherDays">0 days</p>
-        <p class="memory-date">Since July 8, 2025</p>
-      </article>
-    </section>
-
-    <section class="envelope-surprise" id="envelopeSurprise">
-      <button class="envelope-trigger" id="envelopeTrigger" type="button" aria-expanded="false" aria-controls="secretMessage">
-        <div class="envelope">
-          <div class="envelope-back"></div>
-          <div class="envelope-letter" id="secretMessage">
-            I’m sorry if I can’t afford much for our date or give you something fancy, but my gift to you this Valentine’s is all of me — my love, my time, and my heart.
-            <br /><br />
-            Loving you is the easiest and most beautiful part of my life. Thank you for being my home, my peace, and my forever favorite person.
-          </div>
-          <div class="envelope-flap"></div>
-          <div class="envelope-front"></div>
+  <div class="page-shell">
+    <header class="hero panel" data-reveal>
+      <div class="hero-top">
+        <div class="hero-intro">
+          <p class="eyebrow">For Recel Busilak B. Perez</p>
+          <h1>Reasons Why I Love You</h1>
+          <p class="hero-copy">
+            A little corner of the internet for our song, our memories, and all the
+            soft reasons you make my heart feel at home.
+          </p>
         </div>
+        <div class="hero-actions">
+          <button
+            class="icon-button burst-on-click"
+            id="navToggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="siteNav"
+          >
+            Menu
+          </button>
+          <button
+            class="icon-button burst-on-click"
+            id="effectsToggle"
+            type="button"
+            aria-pressed="true"
+          >
+            Effects On
+          </button>
+          <button
+            class="icon-button burst-on-click"
+            id="themeToggle"
+            type="button"
+            aria-pressed="false"
+          >
+            Dark Mode
+          </button>
+        </div>
+      </div>
+
+      <nav class="site-nav" id="siteNav" aria-label="Page sections">
+        <a class="nav-link" href="#timeline">Timeline</a>
+        <a class="nav-link" href="#music">Music</a>
+        <a class="nav-link" href="#surprises">Surprises</a>
+        <a class="nav-link" href="#letters">Letter</a>
+        <a class="nav-link" href="#reasons">Reasons</a>
+        <a class="nav-link" href="#gallery">Gallery</a>
+        <a class="nav-link" href="#messages">Messages</a>
+      </nav>
+
+      <div class="hero-cta">
+        <button class="primary-button love-button burst-on-click" id="loveButton" type="button">
+          Reveal Another Reason
+        </button>
+        <p class="hero-note" id="heroNote">Press the button and we’ll uncover them one by one.</p>
+      </div>
+    </header>
+
+    <noscript>
+      <section class="panel noscript-note">
+        This page still shows the memories without JavaScript, but audio controls,
+        saved messages, dark mode, and reveal animations need scripting enabled.
+      </section>
+    </noscript>
+
+    <main class="page" id="mainContent">
+      <section class="panel stats-panel" id="timeline" data-reveal>
+        <div class="section-heading">
+          <p class="section-kicker">Our Story</p>
+          <h2>Special moments that keep growing</h2>
+          <p class="section-copy">
+            Some things are worth counting because they remind us how far love has
+            already carried us.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <article class="memory-card">
+            <p class="memory-title">We’ve Known Each Other For</p>
+            <p class="memory-days" id="knownDays">0 days</p>
+            <p class="memory-date">Since April 1, 2025</p>
+          </article>
+
+          <article class="memory-card">
+            <p class="memory-title">We’ve Been Together For</p>
+            <p class="memory-days" id="togetherDays">0 days</p>
+            <p class="memory-date">Since July 8, 2025</p>
+          </article>
+
+          <article class="memory-card memory-card-wide">
+            <p class="memory-title">Live Love Timer</p>
+            <p class="memory-days" id="loveTimer">0d 00h 00m 00s</p>
+            <p class="memory-date">Counting every second since July 8, 2025</p>
+          </article>
+
+          <article class="memory-card">
+            <p class="memory-title">Reasons Revealed</p>
+            <p class="memory-days" id="reasonsCount">0 / 10</p>
+            <p class="memory-date">One sweet click at a time</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="music" data-reveal>
+        <div class="section-heading">
+          <p class="section-kicker">Soundtrack</p>
+          <h2>Play our song and stay for a while</h2>
+          <p class="section-copy">
+            The player keeps track of time, volume, and playback so it feels a little
+            more polished and a little more ours.
+          </p>
+        </div>
+
+        <div class="music-panel" role="group" aria-label="Music controls">
+          <div class="track-meta">
+            <p class="track-label">Now playing</p>
+            <h3>To The Bone</h3>
+            <p class="track-subtitle">A soft loop for the whole page</p>
+          </div>
+
+          <div class="music-controls">
+            <button
+              class="primary-button music-toggle burst-on-click"
+              id="musicToggle"
+              type="button"
+              aria-pressed="false"
+            >
+              Play Our Song ♪
+            </button>
+
+            <label class="control-stack" for="musicSeek">
+              Progress
+              <input class="music-seek" id="musicSeek" type="range" min="0" max="100" value="0" />
+            </label>
+
+            <div class="music-time" aria-live="off">
+              <span id="currentTime">0:00</span>
+              <span aria-hidden="true">/</span>
+              <span id="durationTime">0:00</span>
+            </div>
+
+            <label class="control-stack" for="musicVolume">
+              Volume
+              <input class="music-volume" id="musicVolume" type="range" min="0" max="100" value="55" />
+            </label>
+
+            <p class="music-status" id="musicStatus" role="status">Ready when you are.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="surprises" data-reveal>
+        <div class="section-heading">
+          <p class="section-kicker">Little Surprises</p>
+          <h2>Hidden notes, a gift reveal, and soft little sparks</h2>
+          <p class="section-copy">
+            The secret message stays, and now it has a matching gift moment beside it.
+          </p>
+        </div>
+
+        <div class="surprise-grid">
+          <article class="surprise-card envelope-surprise" id="envelopeSurprise">
+            <div class="card-header">
+              <h3>Secret envelope</h3>
+              <p>Tap the envelope whenever you want to read the message again.</p>
+            </div>
+            <button
+              class="envelope-trigger burst-on-click"
+              id="envelopeTrigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="secretMessage"
+            >
+              <span class="envelope" aria-hidden="true">
+                <span class="envelope-back"></span>
+                <span class="envelope-letter" id="secretMessage">
+                  I’m sorry if I can’t afford much for our date or give you something
+                  fancy, but my gift to you is still all of me, my love, my time, and
+                  my heart.
+                  <br /><br />
+                  Loving you is the easiest and most beautiful part of my life. Thank
+                  you for being my home, my peace, and my forever favorite person.
+                </span>
+                <span class="envelope-flap"></span>
+                <span class="envelope-front"></span>
+              </span>
+              <span class="sr-only">Open the secret envelope</span>
+            </button>
+            <p class="inline-note">A soft little message for your quiet moments.</p>
+          </article>
+
+          <article class="surprise-card gift-card" id="giftCard">
+            <div class="card-header">
+              <h3>Gift reveal</h3>
+              <p>A tiny digital surprise wrapped up just for you.</p>
+            </div>
+
+            <button
+              class="gift-trigger burst-on-click"
+              id="giftRevealButton"
+              type="button"
+              aria-expanded="false"
+              aria-controls="giftRevealContent"
+            >
+              <span class="gift-box" aria-hidden="true">
+                <span class="gift-lid"></span>
+                <span class="gift-base"></span>
+                <span class="gift-ribbon gift-ribbon-vertical"></span>
+                <span class="gift-ribbon gift-ribbon-horizontal"></span>
+              </span>
+              <span class="gift-label">Open your little gift</span>
+            </button>
+
+            <div class="gift-content" id="giftRevealContent">
+              <p class="gift-message">
+                My favorite gift is still getting to spend time with you. This little
+                page is my reminder that even small things can hold big love.
+              </p>
+              <div class="gift-actions">
+                <button class="secondary-button burst-on-click" id="emailShareButton" type="button">
+                  Share By Email
+                </button>
+                <a class="secondary-link" href="#messages">Leave a message below</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel letters-panel" id="letters" data-reveal>
+        <div class="section-heading">
+          <p class="section-kicker">Letter & Little Notes</p>
+          <h2>A slower corner of the page, meant to be opened gently</h2>
+          <p class="section-copy">
+            Some words deserve a little more stillness, so this part unfolds at a softer pace.
+          </p>
+        </div>
+
+        <div class="letters-layout">
+          <article class="love-letter-card" id="loveLetterCard">
+            <div class="card-header">
+              <h3>A letter for you</h3>
+              <p>Take your time with this one.</p>
+            </div>
+
+            <button
+              class="secondary-button burst-on-click"
+              id="letterRevealButton"
+              type="button"
+              aria-expanded="false"
+              aria-controls="loveLetterBody"
+            >
+              Open my letter
+            </button>
+
+            <div class="love-letter-body" id="loveLetterBody" aria-live="polite">
+              <p class="letter-line" data-letter-line>
+                Loving you has changed the way ordinary days feel to me, because even the quietest moments
+                seem warmer when they belong to us.
+              </p>
+              <p class="letter-line" data-letter-line>
+                You have become the calm I look for, the smile I return to, and the person my heart keeps
+                choosing in all the smallest and truest ways.
+              </p>
+              <p class="letter-line" data-letter-line>
+                Even when I cannot offer anything grand, I still want you to feel how real my love is in
+                every little effort, every memory, and every page I make for you.
+              </p>
+              <p class="letter-line" data-letter-line>
+                If this whole page is trying to say one thing, it is simply this: I love you deeply,
+                gently, and with my whole heart.
+              </p>
+            </div>
+          </article>
+
+          <div class="letters-sidebar">
+            <article class="daily-reason-card">
+              <p class="memory-title">Reason of this visit</p>
+              <p class="reason-badge daily-badge" id="dailyReasonBadge">01</p>
+              <h3 id="dailyReasonTitle">Your smile makes my worst days better.</h3>
+              <p class="reason-text" id="dailyReasonText">
+                Even when the day feels heavy, one smile from you changes the whole mood of the world around me.
+              </p>
+            </article>
+
+            <article class="open-when-panel">
+              <div class="card-header">
+                <h3>Open when...</h3>
+                <p>Little notes for different kinds of days.</p>
+              </div>
+
+              <div class="open-when-grid">
+                <details class="open-when-card" data-open-when="miss-me">
+                  <summary>Open when you miss me</summary>
+                  <p>
+                    Read this like my hand is finding yours. Even when I am not beside you, my love is still
+                    quietly staying close.
+                  </p>
+                </details>
+
+                <details class="open-when-card" data-open-when="sad">
+                  <summary>Open when you're sad</summary>
+                  <p>
+                    You do not have to be bright all the time. Rest for a while, breathe slowly, and remember
+                    that you are deeply loved exactly as you are.
+                  </p>
+                </details>
+
+                <details class="open-when-card" data-open-when="smile">
+                  <summary>Open when you need a smile</summary>
+                  <p>
+                    Think of one of our silly little moments, the kind that makes laughter arrive before we
+                    even realize it. I hope this note brings one of those back.
+                  </p>
+                </details>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel reasons-panel" id="reasons" data-reveal>
+        <div class="section-heading">
+          <p class="section-kicker">Reasons & Memories</p>
+          <h2>An expandable gallery of all the soft little reasons</h2>
+          <p class="section-copy">
+            Each card holds a reason and a memory note, waiting to be opened one by one.
+          </p>
+        </div>
+
+        <div class="carousel-shell">
+          <div class="carousel-head">
+            <p class="carousel-progress" id="reasonProgress">0 of 10 reasons revealed</p>
+            <div class="carousel-actions">
+              <button class="secondary-button burst-on-click" id="reasonPrev" type="button">
+                Previous
+              </button>
+              <button class="secondary-button burst-on-click" id="reasonNext" type="button">
+                Next
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="carousel-track reasons-track"
+            id="reasonsTrack"
+            tabindex="0"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Love reasons carousel"
+          >
+            <article class="reason-slide is-locked" data-slide>
+              <p class="reason-badge">01</p>
+              <h3>Your smile makes my worst days better.</h3>
+              <p class="reason-text">
+                Even when the day feels heavy, one smile from you changes the whole
+                mood of the world around me.
+              </p>
+              <details class="memory-details">
+                <summary>Open this memory</summary>
+                <p>
+                  You somehow make everything feel lighter without even trying, and I
+                  love that about you more than words can hold.
+                </p>
+              </details>
+            </article>
+
+            <article class="reason-slide is-locked" data-slide>
+              <p class="reason-badge">02</p>
+              <h3>You understand me like no one else.</h3>
+              <p class="reason-text">
+                You notice the small things, the quiet moods, and the little changes I
+                do not always know how to explain.
+              </p>
+              <details class="memory-details">
+                <summary>Open this memory</summary>
+                <p>
+                  Being understood by you feels like finally getting to exhale without
+                  fear of being misread.
+                </p>
+              </details>
+            </article>
+
+            <article class="reason-slide is-locked" data-slide>
+              <p class="reason-badge">03</p>
+              <h3>You make life feel exciting.</h3>
+              <p class="reason-text">
+                Ordinary moments become stories with you, and even small plans turn
+                into something worth remembering.
+              </p>
+              <details class="memory-details">
+                <summary>Open this memory</summary>
+                <p>
+                  I love how being with you makes even simple time together feel
+                  brighter, warmer, and more alive.
+                </p>
+              </details>
+            </article>
+
+            <article class="reason-slide is-locked" data-slide>
+              <p class="reason-badge">04</p>
+              <h3>You support my dreams.</h3>
+              <p class="reason-text">
+                Your belief in me gives me courage when I need it most, and your
+                kindness makes that support feel safe.
+              </p>
+              <details class="memory-details">
+                <summary>Open this memory</summary>
+                <p>
+                  You cheer for my future without asking me to become anyone other than
+                  myself, and that means everything.
+                </p>
+              </details>
+            </article>
+
+            <article class="reason-slide is-locked" data-slide>
+              <p class="reason-badge">05</p>
+              <h3>You are my peace.</h3>
+              <p class="reason-text">
+                When life gets noisy, your presence feels like a quiet room where my
+                heart can finally rest.
+              </p>
+              <details class="memory-details">
+                <summary>Open this memory</summary>
+                <p>
+                  I carry that calm with me after every call, every message, and every
+                  moment we share.
+                </p>
+              </details>
+            </article>
+
+            <article class="reason-slide is-locked" data-slide>
+              <p class="reason-badge">06</p>
+              <h3>You are my best friend.</h3>
+              <p class="reason-text">
+                I do not just love you romantically. I love laughing with you, talking
+                with you, and sharing the softest parts of life with you.
+              </p>
+              <details class="memory-details">
+                <summary>Open this memory</summary>
+                <p>
+                  You are the person I want to tell things to first, and that feeling
+                  still never gets old.
+                </p>
+              </details>
+            </article>
+
+            <article class="reason-slide is-locked" data-slide>
+              <p class="reason-badge">07</p>
+              <h3>You make everything brighter.</h3>
+              <p class="reason-text">
+                Your energy, your care, and the way you love make dark moments feel a
+                little less heavy and good moments feel even sweeter.
+              </p>
+              <details class="memory-details">
+                <summary>Open this memory</summary>
+                <p>
+                  Even from far away, your presence reaches me in ways I can always
+                  feel.
+                </p>
+              </details>
+            </article>
+
+            <article class="reason-slide is-locked" data-slide>
+              <p class="reason-badge">08</p>
+              <h3>You are my favorite person.</h3>
+              <p class="reason-text">
+                There is comfort in you, joy in you, and a kind of closeness that I
+                would choose again and again.
+              </p>
+              <details class="memory-details">
+                <summary>Open this memory</summary>
+                <p>
+                  You feel like the place my thoughts naturally return to when I want
+                  to feel better.
+                </p>
+              </details>
+            </article>
+
+            <article class="reason-slide is-locked" data-slide>
+              <p class="reason-badge">09</p>
+              <h3>You make me feel loved every day.</h3>
+              <p class="reason-text">
+                It is in the way you speak, notice, care, and stay. You make love feel
+                gentle and real.
+              </p>
+              <details class="memory-details">
+                <summary>Open this memory</summary>
+                <p>
+                  I never want to take for granted how deeply seen and cherished you
+                  make me feel.
+                </p>
+              </details>
+            </article>
+
+            <article class="reason-slide is-locked" data-slide>
+              <p class="reason-badge">10</p>
+              <h3>I simply can’t imagine life without you.</h3>
+              <p class="reason-text">
+                Loving you has become part of how I see tomorrow, and every future I
+                imagine feels softer with you in it.
+              </p>
+              <details class="memory-details">
+                <summary>Open this memory</summary>
+                <p>
+                  You are not just part of my favorite memories. You are part of how I
+                  dream about all the next ones too.
+                </p>
+              </details>
+            </article>
+          </div>
+
+          <div class="empty-carousel" id="reasonEmptyState" hidden>
+            The first reason will bloom here after your first click.
+          </div>
+
+          <p class="carousel-hint">
+            Move through each little memory at your own pace.
+          </p>
+        </div>
+
+        <div class="final-message" id="finalMessage" aria-live="polite">
+          You Are My Everything, Recel Busilak B. Perez
+        </div>
+      </section>
+
+      <section class="panel gallery-panel" id="gallery" data-reveal>
+        <div class="section-heading">
+          <p class="section-kicker">Photo Memories</p>
+          <h2>A carousel of our sweetest moments</h2>
+          <p class="section-copy">
+            Every photo feels like a soft little pause where I get to hold on to us
+            just a little longer.
+          </p>
+        </div>
+
+        <div class="photo-stage">
+          <button
+            class="carousel-arrow burst-on-click"
+            id="galleryPrev"
+            type="button"
+            aria-label="Show previous photo"
+          >
+            &#8592;
+          </button>
+
+          <div
+            class="carousel-track photo-track"
+            id="photoTrack"
+            tabindex="0"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Photo memories carousel"
+          >
+            <figure class="photo-slide polaroid-card" data-photo-slide>
+              <img src="imgs/1.jpg" alt="One of my favorite moments with you." />
+              <figcaption>One of my favorite moments with you.</figcaption>
+            </figure>
+
+            <figure class="photo-slide polaroid-card" data-photo-slide>
+              <img src="imgs/2.jpg" alt="Every picture with you feels special." loading="lazy" />
+              <figcaption>Every picture with you feels special.</figcaption>
+            </figure>
+
+            <figure class="photo-slide polaroid-card" data-photo-slide>
+              <img src="imgs/3.jpg" alt="My happy place is always with you." loading="lazy" />
+              <figcaption>My happy place is always with you.</figcaption>
+            </figure>
+
+            <figure class="photo-slide polaroid-card" data-photo-slide>
+              <img src="imgs/4.jpg" alt="A memory I will keep forever." loading="lazy" />
+              <figcaption>A memory I will keep forever.</figcaption>
+            </figure>
+
+            <figure class="photo-slide polaroid-card" data-photo-slide>
+              <img src="imgs/5.jpg" alt="You make ordinary days beautiful." loading="lazy" />
+              <figcaption>You make ordinary days beautiful.</figcaption>
+            </figure>
+
+            <figure class="photo-slide polaroid-card" data-photo-slide>
+              <img src="imgs/6.jpg" alt="Us, and that is everything to me." loading="lazy" />
+              <figcaption>Us, and that is everything to me.</figcaption>
+            </figure>
+
+            <figure class="photo-slide polaroid-card" data-photo-slide>
+              <img src="imgs/7.jpg" alt="Still one of the sweetest days." loading="lazy" />
+              <figcaption>Still one of the sweetest days.</figcaption>
+            </figure>
+
+            <figure class="photo-slide polaroid-card" data-photo-slide>
+              <img src="imgs/8.jpg" alt="You make my heart feel at home." loading="lazy" />
+              <figcaption>You make my heart feel at home.</figcaption>
+            </figure>
+
+            <figure class="photo-slide polaroid-card" data-photo-slide>
+              <img src="imgs/9.jpg" alt="Forever grateful for moments like this." loading="lazy" />
+              <figcaption>Forever grateful for moments like this.</figcaption>
+            </figure>
+          </div>
+
+          <button
+            class="carousel-arrow burst-on-click"
+            id="galleryNext"
+            type="button"
+            aria-label="Show next photo"
+          >
+            &#8594;
+          </button>
+        </div>
+
+        <div class="thumbnail-strip" id="galleryThumbs" aria-label="Photo thumbnails"></div>
+        <p class="gallery-caption" id="galleryCaption">One of my favorite moments with you.</p>
+      </section>
+
+      <section class="panel" id="messages" data-reveal>
+        <div class="section-heading">
+          <p class="section-kicker">Messages</p>
+          <h2>A little place for sweet notes</h2>
+          <p class="section-copy">
+            Leave a message whenever you want to add one more gentle moment to this page.
+          </p>
+        </div>
+
+        <div class="message-layout">
+          <form class="message-form" id="messageForm">
+            <label class="form-field" for="messageName">
+              Name
+              <input class="text-input" id="messageName" name="name" type="text" maxlength="40" placeholder="Your name" required />
+            </label>
+
+            <label class="form-field" for="messageText">
+              Message
+              <textarea
+                class="text-area"
+                id="messageText"
+                name="message"
+                rows="5"
+                maxlength="280"
+                placeholder="Write a sweet note here..."
+                required
+              ></textarea>
+            </label>
+
+            <div class="form-actions">
+              <button class="primary-button burst-on-click" type="submit">Save Message</button>
+              <p class="inline-note">Your note will stay here for you to read again.</p>
+            </div>
+          </form>
+
+          <div class="message-board">
+            <p class="storage-note">Little notes you leave will wait here quietly.</p>
+            <p class="empty-state" id="messageEmpty">No saved messages yet. Leave one for later.</p>
+            <ul class="message-list" id="messageList" aria-live="polite"></ul>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="lightbox-overlay" id="lightboxOverlay" hidden>
+    <div
+      class="lightbox-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightboxCaption"
+    >
+      <button class="lightbox-close secondary-button" id="lightboxClose" type="button">
+        Close
       </button>
-      <p class="envelope-hint">Tap the envelope for a secret message</p>
-    </section>
+      <button class="lightbox-nav secondary-button" id="lightboxPrev" type="button" aria-label="Previous photo">
+        &#8592;
+      </button>
+      <figure class="lightbox-figure">
+        <img id="lightboxImage" src="imgs/1.jpg" alt="" />
+        <figcaption id="lightboxCaption">One of my favorite moments with you.</figcaption>
+      </figure>
+      <button class="lightbox-nav secondary-button" id="lightboxNext" type="button" aria-label="Next photo">
+        &#8594;
+      </button>
+    </div>
+  </div>
 
-    <section class="polaroid-section" aria-label="Our photo memories">
-      <h2 class="polaroid-title">Our Photo Polaroid Wall 📸</h2>
-      <div class="polaroid-wall" id="polaroidWall"></div>
-    </section>
-
-    <section class="reasons" id="reasonsContainer" aria-live="polite"></section>
-
-    <div class="final-message" id="finalMessage">You Are My Everything, Recel Busilak B. Perez ❤️</div>
-  </main>
-
-  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="false"></div>
   <div class="heart-cursor" id="heartCursor" aria-hidden="true">❤</div>
+
   <audio id="bgMusic" src="To The Bone.mp3" preload="metadata" loop></audio>
 
   <script>
-    // Editable list of love reasons.
-    const reasons = [
-      "Your smile makes my worst days better.",
-      "You understand me like no one else.",
-      "You make life feel exciting.",
-      "You support my dreams.",
-      "You are my peace.",
-      "You are my best friend.",
-      "You make everything brighter.",
-      "You are my favorite person.",
-      "You make me feel loved every day.",
-      "I simply can't imagine life without you."
-    ];
-
-    const loveButton = document.getElementById("loveButton");
-    const reasonsContainer = document.getElementById("reasonsContainer");
-    const finalMessage = document.getElementById("finalMessage");
-    const confettiLayer = document.getElementById("confettiLayer");
-    const heartCursor = document.getElementById("heartCursor");
-    const knownDays = document.getElementById("knownDays");
-    const togetherDays = document.getElementById("togetherDays");
-    const musicToggle = document.getElementById("musicToggle");
-    const musicVolume = document.getElementById("musicVolume");
-    const bgMusic = document.getElementById("bgMusic");
-    const floatingHearts = document.getElementById("floatingHearts");
-    const envelopeSurprise = document.getElementById("envelopeSurprise");
-    const envelopeTrigger = document.getElementById("envelopeTrigger");
-    const polaroidWall = document.getElementById("polaroidWall");
-    const lockOverlay = document.getElementById("lockOverlay");
-    const unlockDateLabel = document.getElementById("unlockDateLabel");
-    const cdDays = document.getElementById("cdDays");
-    const cdHours = document.getElementById("cdHours");
-    const cdMinutes = document.getElementById("cdMinutes");
-    const cdSeconds = document.getElementById("cdSeconds");
-
-    let currentReasonIndex = 0;
-    let finaleTriggered = false;
-
-    // Set your lock date here (local time): only unlock from this moment onward.
-    const unlockDate = new Date("2026-02-14T00:00:00");
-    let lockTimer = null;
-
-    // Editable photo wall data (image paths are relative to index.html).
-    const polaroidMemories = [
-      { src: "imgs/1.jpg", caption: "One of my favorite moments with you." },
-      { src: "imgs/2.jpg", caption: "Every picture with you feels special." },
-      { src: "imgs/3.jpg", caption: "My happy place is always with you." },
-      { src: "imgs/4.jpg", caption: "A memory I will keep forever." },
-      { src: "imgs/5.jpg", caption: "You make ordinary days beautiful." },
-      { src: "imgs/6.jpg", caption: "Us, and that is everything to me." },
-      { src: "imgs/7.jpg", caption: "Still one of the sweetest days." },
-      { src: "imgs/8.jpg", caption: "You make my heart feel at home." },
-      { src: "imgs/9.jpg", caption: "Forever grateful for moments like this." }
-    ];
-
-    // Memory timeline dates.
-    const knownSinceDate = new Date("2025-04-01T00:00:00");
-    const relationshipSinceDate = new Date("2025-07-08T00:00:00");
-
-    function calculateDaysSince(startDate) {
-      const now = new Date();
-      const diffMs = now.getTime() - startDate.getTime();
-      const safeDiff = Math.max(diffMs, 0);
-      return Math.floor(safeDiff / (1000 * 60 * 60 * 24));
-    }
-
-    function updateMemoryCounters() {
-      knownDays.textContent = `${calculateDaysSince(knownSinceDate)} days`;
-      togetherDays.textContent = `${calculateDaysSince(relationshipSinceDate)} days`;
-    }
-
-    updateMemoryCounters();
-    setInterval(updateMemoryCounters, 1000);
-
-    function formatTwoDigits(value) {
-      return String(value).padStart(2, "0");
-    }
-
-    function applyUnlockedState() {
-      document.body.classList.remove("locked");
-      lockOverlay.setAttribute("aria-hidden", "true");
-      if (lockTimer) {
-        clearInterval(lockTimer);
-        lockTimer = null;
-      }
-    }
-
-    function renderCountdown() {
-      const now = new Date();
-      const remainingMs = unlockDate.getTime() - now.getTime();
-
-      if (remainingMs <= 0) {
-        applyUnlockedState();
-        return;
-      }
-
-      const totalSeconds = Math.floor(remainingMs / 1000);
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
-
-      cdDays.textContent = formatTwoDigits(days);
-      cdHours.textContent = formatTwoDigits(hours);
-      cdMinutes.textContent = formatTwoDigits(minutes);
-      cdSeconds.textContent = formatTwoDigits(seconds);
-    }
-
-    function initializeLock() {
-      unlockDateLabel.textContent = `Unlocks on ${unlockDate.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}`;
-
-      if (new Date().getTime() >= unlockDate.getTime()) {
-        applyUnlockedState();
-        return;
-      }
-
-      document.body.classList.add("locked");
-      lockOverlay.setAttribute("aria-hidden", "false");
-      renderCountdown();
-      lockTimer = setInterval(renderCountdown, 1000);
-    }
-
-    initializeLock();
-
-    function renderPolaroidWall() {
-      const tilts = [-4, 3, -2, 2, -3, 4, -2, 3, -4];
-
-      polaroidMemories.forEach((memory, index) => {
-        const card = document.createElement("article");
-        card.className = "polaroid-card";
-        card.style.setProperty("--tilt", `${tilts[index % tilts.length]}deg`);
-
-        const image = document.createElement("img");
-        image.className = "polaroid-image";
-        image.src = memory.src;
-        image.alt = memory.caption;
-        image.loading = "lazy";
-
-        const caption = document.createElement("p");
-        caption.className = "polaroid-caption";
-        caption.textContent = memory.caption;
-
-        card.appendChild(image);
-        card.appendChild(caption);
-        polaroidWall.appendChild(card);
-      });
-    }
-
-    renderPolaroidWall();
-
-    bgMusic.volume = Number(musicVolume.value) / 100;
-
-    musicToggle.addEventListener("click", async () => {
-      if (bgMusic.paused) {
-        try {
-          await bgMusic.play();
-          musicToggle.textContent = "Pause Our Song ❚❚";
-        } catch (error) {
-          musicToggle.textContent = "Tap Again To Play ♪";
-        }
-      } else {
-        bgMusic.pause();
-        musicToggle.textContent = "Play Our Song ♪";
-      }
-    });
-
-    musicVolume.addEventListener("input", () => {
-      bgMusic.volume = Number(musicVolume.value) / 100;
-    });
-
-    function createFloatingHearts() {
-      const count = 20;
-      for (let i = 0; i < count; i += 1) {
-        const heart = document.createElement("span");
-        heart.className = "floating-heart";
-        heart.textContent = "❤";
-        heart.style.setProperty("--left", `${Math.random() * 100}%`);
-        heart.style.setProperty("--size", `${10 + Math.random() * 20}px`);
-        heart.style.setProperty("--duration", `${14 + Math.random() * 16}s`);
-        heart.style.setProperty("--delay", `${-Math.random() * 22}s`);
-        heart.style.setProperty("--drift", `${10 + Math.random() * 34}px`);
-        floatingHearts.appendChild(heart);
-      }
-    }
-
-    createFloatingHearts();
-
-    envelopeTrigger.addEventListener("click", () => {
-      const isOpen = envelopeSurprise.classList.toggle("open");
-      envelopeTrigger.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    function addReasonCard(text) {
-      const card = document.createElement("article");
-      card.className = "reason-card";
-
-      const paragraph = document.createElement("p");
-      paragraph.className = "reason-text";
-      paragraph.textContent = text;
-
-      card.appendChild(paragraph);
-      reasonsContainer.appendChild(card);
-
-      requestAnimationFrame(() => {
-        card.classList.add("show");
-      });
-
-      card.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-
-    function launchConfetti() {
-      const colors = [
-        "#ff4f86",
-        "#ff7faa",
-        "#ffc2d8",
-        "#ffddec",
-        "#ffffff",
-        "#f48fb1"
-      ];
-
-      const pieces = 170;
-      for (let i = 0; i < pieces; i += 1) {
-        const piece = document.createElement("span");
-        piece.className = "confetti";
-
-        const left = Math.random() * 100;
-        const size = 6 + Math.random() * 9;
-        const drift = -120 + Math.random() * 240;
-        const fall = 2.6 + Math.random() * 2.8;
-
-        piece.style.left = `${left}vw`;
-        piece.style.setProperty("--size", `${size}px`);
-        piece.style.setProperty("--drift", `${drift}px`);
-        piece.style.setProperty("--fall", `${fall}s`);
-        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-        confettiLayer.appendChild(piece);
-
-        setTimeout(() => {
-          piece.remove();
-        }, fall * 1000 + 160);
-      }
-    }
-
-    function showFinale() {
-      if (finaleTriggered) {
-        return;
-      }
-
-      finaleTriggered = true;
-      launchConfetti();
-      finalMessage.classList.add("show");
-      loveButton.disabled = true;
-      loveButton.textContent = "Forever & Always ❤️";
-    }
-
-    loveButton.addEventListener("click", () => {
-      if (currentReasonIndex < reasons.length) {
-        addReasonCard(reasons[currentReasonIndex]);
-        currentReasonIndex += 1;
-
-        if (currentReasonIndex === reasons.length) {
-          setTimeout(showFinale, 350);
-        }
-      }
-    });
-
-    // Heart cursor follows pointer.
-    window.addEventListener("mousemove", (event) => {
-      heartCursor.style.left = `${event.clientX}px`;
-      heartCursor.style.top = `${event.clientY}px`;
-    });
-
-    // Burst hearts on click.
-    window.addEventListener("click", (event) => {
-      const burstCount = 10;
-
-      for (let i = 0; i < burstCount; i += 1) {
-        const heart = document.createElement("span");
-        heart.className = "click-heart";
-        heart.textContent = "❤";
-
-        const angle = (Math.PI * 2 * i) / burstCount;
-        const distance = 24 + Math.random() * 34;
-        const jitterX = (Math.random() - 0.5) * 14;
-        const jitterY = (Math.random() - 0.5) * 14;
-
-        const x = Math.cos(angle) * distance + jitterX;
-        const y = Math.sin(angle) * distance + jitterY;
-
-        heart.style.left = `${event.clientX}px`;
-        heart.style.top = `${event.clientY}px`;
-        heart.style.setProperty("--x", `${x}px`);
-        heart.style.setProperty("--y", `${y}px`);
-
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-          heart.remove();
-        }, 860);
-      }
-    });
+    window.lovePageAnalytics = window.lovePageAnalytics || function analyticsPlaceholder() {
+      return undefined;
+    };
   </script>
+  <script src="script.js" defer></script>
 </body>
 </html>
